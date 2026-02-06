@@ -47,7 +47,7 @@ nice_view_spi: &spi2 {
 
 &pmw_split {
     device = <&trackball>;
-    input-processors = <&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>;
+    input-processors = <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_Y_INVERT)>;
 };
 
 &default_transform {
