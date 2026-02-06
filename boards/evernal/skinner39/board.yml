@@ -1,0 +1,9 @@
+boards:
+  - name: skinner39_left
+    vendor: evernal
+    socs:
+      - name: nrf52840
+  - name: skinner39_right
+    vendor: evernal
+    socs:
+      - name: nrf52840
