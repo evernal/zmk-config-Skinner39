@@ -42,6 +42,7 @@ nice_view_spi: &spi2 {
         zephyr,axis-x = <INPUT_REL_X>;
         zephyr,axis-y = <INPUT_REL_Y>;
         invert-y;
+        invert-x;
         smart-mode;
     };
 };
