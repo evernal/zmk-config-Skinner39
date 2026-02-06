@@ -1,101 +1,102 @@
 ![](https://web-api.textin.com/ocr_image/external/a8fbeec7ad58d1c1.jpg)
 
+## Recent Changes (zmk-update branch)
+
+This branch updates the Skinner39 configuration to be compatible with the latest ZMK firmware and introduces several significant improvements:
+
+### Major Updates
+
+- **ZMK Main Migration**: Migrated to ZMK main branch with Zephyr 4.1 and Hardware Model v2 (HWMv2) board structure
+- **Board Structure Modernization**: Restructured board files from the old `config/boards/arm/skinner39/` structure to the new `boards/FindKBtokyoJP/skinner39/` HWMv2 format
+- **Driver Update**: Switched from badjeff's PMW3610 driver to the Zephyr upstream implementation for better compatibility and support
+- **Miryoku Keymap**: Ported Miryoku-style keymap from the ck-keymap branch for improved ergonomic layout
+
+### Technical Improvements
+
+- Fixed build warnings by removing invalid Kconfig settings and guarding empty CMake library
+- Fixed build errors for compatibility with ZMK main branch
+- Updated GitHub Actions workflow for the new build structure
+- Added proper board configuration files (`board.yml`, `board.cmake`)
+- Reorganized device tree files with proper left/right split definitions
+
+### Files Changed
+
+**Summary**: 23 files changed, 325 insertions(+), 330 deletions(-)
+
+**Key Changes**:
+- Migrated board definition files to `boards/FindKBtokyoJP/skinner39/`
+- Updated build configuration in `build.yaml` and `.github/workflows/build.yml`
+- Removed legacy board files from `config/boards/arm/skinner39/`
+- Enhanced Kconfig definitions for left and right keyboard halves
+- Updated keymap configuration
+
+---
+
 ## Skinner39
 
-Skinner39は、Yawkeeさん制作のkeyballにインスピレーションを受けて開発した、OLED搭載の無線分割キーボードです。ブレードランナー2049のファンとして、映画に登場する近未来的な廃墟の街並みと空飛ぶクルマをイメージソースとしてSkinner39を設計しました。組み立てガイドは、こちらとなります：https://aeolian-melon-437.notion.site/Skinner39-1a14484f44ee80c3916ad98ebab79145
+Skinner39 is a wireless split keyboard with OLED displays, inspired by Yawkee's Keyball. As a fan of Blade Runner 2049, this keyboard was designed with imagery from the movie's futuristic, dystopian cityscapes and flying cars as inspiration. Assembly guide available here: https://aeolian-melon-437.notion.site/Skinner39-1a14484f44ee80c3916ad98ebab79145
 
-##  商品詳細
+## Product Details
 
-·完全無線（MS88SF2）
+- Fully wireless (MS88SF2)
+- ZMK Studio & ZMK firmware support
+- OLED display equipped
+- Low-profile and high-profile compatible*1
+- Supports 34mm & 25mm trackballs with dedicated case
+- 3D printed case with adjustable trackball position
+- Rear reset button and Bluetooth ON/OFF switch
+- Ultra-thin lithium battery*2
+- Magnetic tenting function
 
-· ZMK studio & ZMK firmware
+## Package Contents
 
-·OLEDディスプレイ搭載
+- Assembled left and right set (39 keys total)
+- MS88SF2 module
+- 2 pre-soldered PCBs*3
+- Main case
+- Top plate
+- 25mm/34mm trackball case (with ceramic support ball)
+- 25mm/34mm trackball
+- Low-power trackball sensor
+- Power switch
+- Diodes
+- 2 types of screws
+- Spacers
+- Rubber feet
 
-·ロープロ·ハイプロファイル対応＊1
+## Important Notes
 
-·34mm·25mmトラックボール搭載可能＆専用ケース
+*1 Compatible with Choc v1, Choc v2, and MX switches. However, when using Choc V1, you need to purchase dedicated keycaps or 3D print custom keycaps.
 
-·トラボ位置調整可能な3Dプリントケース
-
-·背面リセットボタン、Bluetooth ON／OFFスイッチ搭載
-
-·超薄型リチウムバッテリー＊2
-
-·マグネット式テンティング機能
-
-##  内容物
-
-·完成品左右セット（キー数：39キー）
-
-·MS88SF2モジュール
-
-·はんだ済み基板2枚＊3
-
-·本体ケース
-
-·トッププレート
-
-·25mm／34mmのトラックボールケース（セラミックス支持球付き）
-
-·25mm/34mmトラックボール
-
-·省電力トラックボールセンサー
-
-·電源スイッチ
-
-·ダイオード
-
-·ネジ2種
-
-·スペーサー
-
-·ゴム足
-
-## 注意事項
-
-＊1 Choc v1、Choc v2、MX軸のすべてに対応していますが、Choc V1を使用する場合は専用キートップを購入するか、3Dプリントでキートップを作成する必要があります。
-
-＊2リチウムイオンバッテリーの取り扱いには十分な安全注意が必要です。取り扱いの不備による事故·損害等について、当方は一切の責任を負いかねますのでご了承ください。バッテリーの安全に関する詳細は、以下のサイトをご確認ください。
+*2 Lithium-ion batteries require careful handling for safety. We cannot be held responsible for any accidents or damage resulting from improper handling. For detailed battery safety information, please visit:
 
 https://www.baj.r.jp/battery/safety/safety16.html
 
-＊3 Choc V1、V2、MX軸対応のソケットは実装済みです。ロープロとハイプロファイルの両方の軸を好みに合わせ使用したい場合は、それぞれに対応したケースとプレートを別途ご購入してください。
+*3 Sockets for Choc V1, V2, and MX switches are pre-installed. If you want to use both low-profile and high-profile switches, please purchase the corresponding cases and plates separately.
 
-## 設定ガイド
+## Setup Guide
 
- Skinner39の設定方法
+Skinner39 Configuration Instructions
 
-·左手側がメインユニットです。
+- The left hand is the main unit
+- USB connection should be made to the left hand
+- Note: The keyboard will not function if only the right hand is connected to the PC
+- Select [Skinner39] from your PC's Bluetooth device list to connect
+- Once connected, both OLEDs will display the "Wi-Fi" icon and connection device "number"
 
-·USB接続は左手側で行ってください。
+## If Bluetooth Connection Fails
 
-·なお、右手のみをPCに接続した場合、キーボードは動作しません。
-
-·PCのBluetooth一覧に表示される［Skinner39］を選択して接続します。
-
-·接続が完了すると、両手のOLEDに「Wi-Fi」マークと接続設備「番号」が表示されます。
-
-#  Bluetooth接続ができない場合
-
-1．［bt＿clr］キーと［2］キーを同時に押して、再度無線接続を試みてください。
-
-2．接続できない時、リセットボタン（ケース背面の丸いボタン）を1回押してリセットします。
-
-3．その後、再度［bt＿clr］キーと［2］キーを押して、無線接続を行ってください。
+1. Press the [bt_clr] key and [2] key simultaneously, then try to reconnect wirelessly
+2. If connection still fails, press the reset button (round button on the back of the case) once to reset
+3. After resetting, press the [bt_clr] key and [2] key again to establish wireless connection
 
 <!-- 0 symbol_layer |SYM --- 1 Skp 6kp 6kp 6kp 6kp 6kp 5kp Skp 2 ! @ # &#36; % Y U 1 O P 3 6bt 6bt 6bt Strons 6kp Skp 6kp 4 BT_CLR BT_SEL O BT_SEL 1 BT_SEL 2 H J K 5kp Skp L ; (BT_CLR)Clear profile 5 Strons Gtrans Gtrans Gtrons Strans Skp Skp 6kp Skp 6kp 6 N M , / + Strans Gtrons Strons 6kp 1 Gtrans Strans Strans 6kp  -->
 ![](https://web-api.textin.com/ocr_image/external/9f48b8ead660bd21.jpg)
 
-##  設定を間違えてしまった場合
+## If You Make Configuration Errors
 
-1． ZMK GitHub Actionsで再度フォークし、ファームウェアをダウンロードします。
-
-2．両手のキーボードをUSB接続します。
-
-3． リセットボタンを押すと、PCに「keyball」というデバイスが表示されます。
-
-4．Keyballにリセットファイルを貼り付けます。
-
-5．リセット完了となります。
-
+1. Fork again from ZMK GitHub Actions and download the firmware
+2. Connect both keyboard halves via USB
+3. Press the reset button, and a device called "keyball" will appear on your PC
+4. Paste the reset file into Keyball
+5. Reset is complete
