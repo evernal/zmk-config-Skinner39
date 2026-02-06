@@ -10,6 +10,7 @@ This branch updates the Skinner39 configuration to be compatible with the latest
 - **Board Structure Modernization**: Restructured board files from the old `config/boards/arm/skinner39/` structure to the new `boards/FindKBtokyoJP/skinner39/` HWMv2 format
 - **Driver Update**: Switched from badjeff's PMW3610 driver to the Zephyr upstream implementation for better compatibility and support
 - **Miryoku Keymap**: Ported Miryoku-style keymap from the ck-keymap branch for improved ergonomic layout
+- **Bluetooth Performance Optimization**: Migrated Bluetooth settings from Keyball39 for improved trackball responsiveness
 
 ### Technical Improvements
 
@@ -18,6 +19,31 @@ This branch updates the Skinner39 configuration to be compatible with the latest
 - Updated GitHub Actions workflow for the new build structure
 - Added proper board configuration files (`board.yml`, `board.cmake`)
 - Reorganized device tree files with proper left/right split definitions
+
+### Zephyr 4.1 Compatibility Fixes
+
+The following fixes were applied to ensure compatibility with Zephyr 4.1:
+
+- **Bluetooth Buffer Configuration**: Replaced deprecated `CONFIG_BT_BUF_ACL_RX_COUNT` with `CONFIG_BT_BUF_EVT_RX_COUNT=21` (must be greater than `CONFIG_BT_BUF_ACL_TX_COUNT` per Zephyr 4.1 migration requirements)
+- **Input Transform Header**: Added `#include <dt-bindings/zmk/input_transform.h>` to `skinner39_left.dts` to properly define `INPUT_TRANSFORM_Y_INVERT` for trackball scroll inversion
+
+### Bluetooth Settings (from Keyball39)
+
+The following Bluetooth performance settings were added to `config/skinner39.conf` for improved trackball responsiveness:
+
+```conf
+# Connection intervals: 7.5ms for lower latency
+CONFIG_BT_PERIPHERAL_PREF_MAX_INT=6
+CONFIG_BT_PERIPHERAL_PREF_MIN_INT=6
+
+# Buffer sizes for improved throughput
+CONFIG_BT_BUF_ACL_TX_COUNT=20
+CONFIG_BT_BUF_EVT_RX_COUNT=21
+
+# TX power and PHY settings
+CONFIG_BT_CTLR_TX_PWR_PLUS_8=y
+CONFIG_BT_CTLR_PHY_2M=y
+```
 
 ### Files Changed
 
@@ -29,6 +55,8 @@ This branch updates the Skinner39 configuration to be compatible with the latest
 - Removed legacy board files from `config/boards/arm/skinner39/`
 - Enhanced Kconfig definitions for left and right keyboard halves
 - Updated keymap configuration
+- Added `input_transform.h` include for trackball scroll processing
+- Updated Bluetooth buffer configuration for Zephyr 4.1 compatibility
 
 ---
 
