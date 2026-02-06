@@ -62,6 +62,7 @@ nice_view_spi: &spi2 {
 / {
     chosen {
         zmk,physical-layout = &matrix_physical_layout;
+        zephyr,usb-device-name = "Skinner39_Right";
     };
 
     kscan0: kscan {

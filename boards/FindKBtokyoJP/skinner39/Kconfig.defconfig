@@ -4,7 +4,7 @@
 if BOARD_SKINNER39_LEFT
 
 config ZMK_KEYBOARD_NAME
-    default "SKINNER39"
+    default "Skinner39"
 
 config ZMK_SPLIT_ROLE_CENTRAL
     default y
