@@ -42,14 +42,13 @@ nice_view_spi: &spi2 {
         zephyr,axis-x = <INPUT_REL_X>;
         zephyr,axis-y = <INPUT_REL_Y>;
         invert-y;
-        invert-x;
         smart-mode;
     };
 };
 
 &pmw_split {
     device = <&trackball>;
-    input-processors = <&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>;
+    input-processors = <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_X_INVERT)>;
 };
 
 &default_transform {
