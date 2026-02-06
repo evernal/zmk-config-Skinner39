@@ -7,56 +7,25 @@ This branch updates the Skinner39 configuration to be compatible with the latest
 ### Major Updates
 
 - **ZMK Main Migration**: Migrated to ZMK main branch with Zephyr 4.1 and Hardware Model v2 (HWMv2) board structure
-- **Board Structure Modernization**: Restructured board files from the old `config/boards/arm/skinner39/` structure to the new `boards/FindKBtokyoJP/skinner39/` HWMv2 format
-- **Driver Update**: Switched from badjeff's PMW3610 driver to the Zephyr upstream implementation for better compatibility and support
+- **Board Structure Modernization**: Restructured board files to the new `boards/FindKBtokyoJP/skinner39/` HWMv2 format
+- **Driver Update**: Switched from badjeff's PMW3610 driver to the Zephyr upstream implementation for better compatibility
 - **Miryoku Keymap**: Ported Miryoku-style keymap from the ck-keymap branch for improved ergonomic layout
-- **Bluetooth Performance Optimization**: Migrated Bluetooth settings from Keyball39 for improved trackball responsiveness
 
-### Technical Improvements
+### Bluetooth Performance Optimization
 
-- Fixed build warnings by removing invalid Kconfig settings and guarding empty CMake library
-- Fixed build errors for compatibility with ZMK main branch
-- Updated GitHub Actions workflow for the new build structure
-- Added proper board configuration files (`board.yml`, `board.cmake`)
-- Reorganized device tree files with proper left/right split definitions
+Bluetooth settings have been tuned for improved trackball responsiveness:
 
-### Zephyr 4.1 Compatibility Fixes
+- **Lower latency**: 7.5ms connection intervals for faster input response
+- **Extended range**: +8dBm TX power for better wireless connectivity
+- **Faster radio**: 2M PHY mode for higher throughput and reduced lag
+- **Larger buffers**: Increased ACL and L2CAP buffer sizes for smoother trackball data transmission
 
-The following fixes were applied to ensure compatibility with Zephyr 4.1:
+### Trackball Modes
 
-- **Bluetooth Buffer Configuration**: Replaced deprecated `CONFIG_BT_BUF_ACL_RX_COUNT` with `CONFIG_BT_BUF_EVT_RX_COUNT=21` (must be greater than `CONFIG_BT_BUF_ACL_TX_COUNT` per Zephyr 4.1 migration requirements)
-- **Input Transform Header**: Added `#include <dt-bindings/zmk/input_transform.h>` to `skinner39_left.dts` to properly define `INPUT_TRANSFORM_Y_INVERT` for trackball scroll inversion
+The trackball supports multiple modes via layer switching:
 
-### Bluetooth Settings (from Keyball39)
-
-The following Bluetooth performance settings were added to `config/skinner39.conf` for improved trackball responsiveness:
-
-```conf
-# Connection intervals: 7.5ms for lower latency
-CONFIG_BT_PERIPHERAL_PREF_MAX_INT=6
-CONFIG_BT_PERIPHERAL_PREF_MIN_INT=6
-
-# Buffer sizes for improved throughput
-CONFIG_BT_BUF_ACL_TX_COUNT=20
-CONFIG_BT_BUF_EVT_RX_COUNT=21
-
-# TX power and PHY settings
-CONFIG_BT_CTLR_TX_PWR_PLUS_8=y
-CONFIG_BT_CTLR_PHY_2M=y
-```
-
-### Files Changed
-
-**Summary**: 23 files changed, 325 insertions(+), 330 deletions(-)
-
-**Key Changes**:
-- Migrated board definition files to `boards/FindKBtokyoJP/skinner39/`
-- Updated build configuration in `build.yaml` and `.github/workflows/build.yml`
-- Removed legacy board files from `config/boards/arm/skinner39/`
-- Enhanced Kconfig definitions for left and right keyboard halves
-- Updated keymap configuration
-- Added `input_transform.h` include for trackball scroll processing
-- Updated Bluetooth buffer configuration for Zephyr 4.1 compatibility
+- **Layer 5 (Scroll mode)**: Trackball acts as a scroll wheel with Y-axis inversion for natural scrolling direction
+- **Layer 6 (Snipe mode)**: Trackball sensitivity reduced to 1/3 for precision cursor control
 
 ---
 
