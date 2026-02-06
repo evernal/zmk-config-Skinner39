@@ -70,9 +70,10 @@ nice_view_spi: &spi2 {
     status = "okay";
 
     // when layer 5 is active, the trackball will act as a mouse wheel
+    // scroll scaling at 1/10th speed with Y-axis inversion (migrated from Keyball39)
     scroller {
         layers = <5>;
-        input-processors = <&zip_xy_to_scroll_mapper>;
+        input-processors = <&zip_xy_to_scroll_mapper>, <&zip_scroll_scaler 1 10>, <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>;
     };
 
     // when layer 6 is active, the trackball will move more slowly
