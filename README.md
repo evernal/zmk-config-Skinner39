@@ -20,12 +20,19 @@ Bluetooth settings have been tuned for improved trackball responsiveness:
 - **Faster radio**: 2M PHY mode for higher throughput and reduced lag
 - **Larger buffers**: Increased ACL and L2CAP buffer sizes for smoother trackball data transmission
 
+### Trackball & Input Improvements
+
+- **Trackball cursor direction**: Cursor now moves correctly in all directions
+- **Slower scrolling**: Scroll mode is slower for finer control
+- **Homerow mods more reliable**: Holding a homerow key (e.g., holding "f" for Shift) is less likely to misfire as a tap during fast typing
+- **Device naming**: Left and right halves show distinct names (`Skinner39_Left` / `Skinner39_Right`) in USB and Bluetooth device lists
+
 ### Trackball Modes
 
 The trackball supports multiple modes via layer switching:
 
 - **Layer 5 (Scroll mode)**: Trackball acts as a scroll wheel with Y-axis inversion for natural scrolling direction
-- **Layer 6 (Snipe mode)**: Trackball sensitivity reduced to 1/3 for precision cursor control
+- **Layer 6 (Snipe mode)**: Trackball sensitivity reduced for precision cursor control
 
 ---
 
