@@ -41,7 +41,6 @@ nice_view_spi: &spi2 {
         res-cpi = <600>;
         zephyr,axis-x = <INPUT_REL_X>;
         zephyr,axis-y = <INPUT_REL_Y>;
-        smart-mode;
     };
 };
 
