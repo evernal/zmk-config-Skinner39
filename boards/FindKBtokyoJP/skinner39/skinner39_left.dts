@@ -75,7 +75,7 @@ nice_view_spi: &spi2 {
     // scroll scaling at 1/10th speed with Y-axis inversion (migrated from Keyball39)
     scroller {
         layers = <5>;
-        input-processors = <&zip_xy_to_scroll_mapper>, <&zip_scroll_scaler 1 15>, <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>;
+        input-processors = <&zip_xy_to_scroll_mapper>, <&zip_scroll_scaler 1 20>, <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>;
     };
 
     // when layer 6 is active, the trackball will move more slowly
